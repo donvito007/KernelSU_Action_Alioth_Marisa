@@ -8,15 +8,15 @@ on:
       KERNEL_SOURCE:
         description: 'Kernel Source'
         required: true
-        default: 'https://github.com/donvito007/EternityKernel-alioth'
+        default: 'https://github.com/donvito007/android_kernel_xiaomi_thyme_Rinko-Studio'
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: 'aosp'
+        default: 'thirteen'
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'alioth_defconfig'
+        default: 'thyme_defconfig'
       KERNEL_FILE:
         description: 'Your kernel out image name'
         required: true
