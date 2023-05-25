@@ -8,19 +8,19 @@ on:
       KERNEL_SOURCE:
         description: 'Kernel Source'
         required: true
-        default: 'https://github.com/Neternels/Nethunter_kernel_alioth-in'
+        default: 'https://github.com/donvito007/android_kernel_xiaomi_sdm710'
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: '13.0-alioth'
+        default: 'lineage-20'
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'vendor/alioth_defconfig'
+        default: 'xiaomi/sirius.config'
       KERNEL_FILE:
         description: 'Your kernel out image name'
         required: true
-        default: 'Image'
+        default: 'Image.gz'
       CLANG_VERSION:
         description: 'Clang version'
         required: true
