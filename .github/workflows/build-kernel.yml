@@ -16,7 +16,7 @@ on:
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'thyme_defconfig'
+        default: 'vendor/kona-perf_defconfig'
       KERNEL_FILE:
         description: 'Your kernel out image name'
         required: true
