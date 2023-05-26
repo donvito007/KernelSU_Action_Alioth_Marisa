@@ -16,7 +16,7 @@ on:
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'vendor/alioth_defconfig'
+        default: 'vendor/thyme_defconfig'
       KERNEL_FILE:
         description: 'Your kernel out image name'
         required: true
