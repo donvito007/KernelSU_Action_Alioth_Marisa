@@ -16,7 +16,7 @@ on:
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'vendor/kona-perf_defconfig'
+        default: 'vendor/xiaomi/stock/thyme-stock_defconfig'
       KERNEL_FILE:
         description: 'Your kernel out image name'
         required: true
