@@ -12,11 +12,11 @@ on:
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: 'stable'
+        default: 'rebase'
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'thyme_stock-defconfig'
+        default: 'thyme_defconfig'
       KERNEL_FILE:
         description: 'Your kernel out image name'
         required: true
