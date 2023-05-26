@@ -8,15 +8,15 @@ on:
       KERNEL_SOURCE:
         description: 'Kernel Source'
         required: true
-        default: 'https://github.com/mvaisakh/alioth'
+        default: 'https://github.com/Vincent4440/noxious_kernel_xiaomi_sm8250'
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: 'eva'
+        default: 'thirteen'
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'vendor/kona-perf_defconfig'
+        default: 'vendor/thyme_defconfig'
       KERNEL_FILE:
         description: 'Your kernel out image name'
         required: true
