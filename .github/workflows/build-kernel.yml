@@ -12,7 +12,7 @@ on:
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: 'kucing-13-gcc'
+        default: 'kucing-13'
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
