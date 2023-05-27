@@ -1,67 +1,65 @@
-**中文** | [English](README_EN.md)
-
 # KernelSU Action
-用于Non-GKI Kernel的Action，具有一定的普遍性，需要了解内核及Android的相关知识得以运用。
+Action for Non-GKI Kernel has some common and requires knowledge of kernel and Android to be used.
 
-## 支持内核
+## Support Kernel
 - `4.19`
 - `4.14`
-## 使用
-Fork本仓库到你的储存库然后点击`Action`，在左侧可看见`Build Kernel Common`/`Build boot image`选项，点击选项会看见右边的大对话框的上面会有`Run workflows`，里面有需要你填写的配置，看下面的部分，了解如何填写。
+## Usage
+First fork this repo, then click on action, you will see the `Build Kernel` option, click on the option and you will see a dialog box on the right hand side with `Run workflows` in it, there are configurations that you need to type, see the section below to understand how to type them in.
 
-或者使用config.env，编辑config.env然后提交，按star或者run workflows，这个功能是方便手机修改参数。
+Or use config.env, edit config.env and submit it, click star or run workflows, this function is convenient for the phone to modify the parameters.
 ### Build Kernel
-编译成功后，会在`Action`上传AnyKernel3，已经关闭设备检查，请在Twrp刷入
+After successful build, it will upload AnyKernel3 in `Action`, which has turned off device check, please flash to phone in Twrp.
 #### Kernel Source
-填写你的内核仓库地址
+Type your kernel link
 
-例如: https://github.com/Diva-Room/Miku_kernel_xiaomi_wayne
+e.g. https://github.com/Diva-Room/Miku_kernel_xiaomi_wayne
 #### Branch
-填写你的内核分支
+Type your kernel branch
 
-例如: TDA
+e.g. TDA
 #### Kernel defconfig
-填写你的内核配置文件名
+Type your kernel defconfig
 
-例如: vendor/wayne_defconfig
+e.g. vendor/wayne_defconfig
 #### Kernel file
-填写需要刷写的image，一般与你的aosp-device tree里的BOARD_KERNEL_IMAGE_NAME是一致的
+Type in the image you need, usually the same as BOARD_KERNEL_IMAGE_NAME in your aosp-device tree.
 
-例如: Image.gz-dtb
-#### Clang version
-填写需要使用的Clang版本
-| Clang 版本 | 对应 Android 版本 | AOSP-Clang 版本 |
-| ---------- | ----------------- | --------------- |
-| 12.0.5     | Android S         | r416183b        |
-| 14.0.6     | Android T         | r450784d        |
-| 14.0.7     |                   | r450784e        |
-| 15.0.1     |                   | r458507         |
+e.g. Image.gz-dtb
+#### Clang-version
+Type the version of Clang you need to use
+| Clang version | Corresponding Android version | AOSP-Clang version |
+| ------------- | ----------------------------- | ------------------ |
+| 12.0.5        | Android S                     | r416183b           |
+| 14.0.6        | Android T                     | r450784d           |
+| 14.0.7        |                               | r450784e           |
+| 15.0.1        |                               | r458507            |
 
-一般Clang12就能通过大部分4.14及以上的内核的编译
-我自己的MI 6X 4.19使用的是r450784d
+Usually Clang12 will pass most kernel builds of 4.14 and above.
+My own MI 6X 4.19 is using r450784d.
 #### Extra build commands
-有的内核需要手动加入一些编译命令，才能正常编译，不需要的话不填写即可
-请在命令与命令之间用空格隔开
+Some kernels require some build commands to be typed in manually in order to build properly, so please don't type them in if you don't need to.
+Separate commands with spaces.
 
-例如: LLVM=1 LLVM_IAS=1
+e.g. LLVM=1 LLVM_IAS=1
 #### Kprobes
-如果你的内核Kprobes工作正常这项改成true即可自动在defconfig注入参数
+If your kernel Kprobes is working properly, changing this to "true" will automatically add the parameter to defconfig.
 ### Build boot image
-编译成功后，会在`Action`上传boot-su.img，使用fastboot刷入到手机
+After a successful build, boot-su.img will be uploaded in `Action` and flashed to the phone using fastboot.
 #### Kernel Source
-填写你的内核仓库地址
+Type your kernel link
 
-例如: https://github.com/Diva-Room/Miku_kernel_xiaomi_wayne
+e.g. https://github.com/Diva-Room/Miku_kernel_xiaomi_wayne
 #### Branch
-填写你的内核分支
+Type your kernel branch
 
-例如: TDA
+e.g. TDA
 #### Kernel Build Config
-填写你的内核构建配置文件，需要直链
+Type your kernel build config link
 
-例如: https://raw.githubusercontent.com/xiaoleGun/KernelSU_action/main/configs/build.config.wayne
+e.g. https://raw.githubusercontent.com/xiaoleGun/KernelSU_action/main/configs/build.config.wayne
 
-里面要改的不多，下面是build config和Device Tree(设备树)里的BoardConfig/BoardConfigCommon的对照
+There is not much you need to change in there, here is a comparison between the build config and the BoardConfig/BoardConfigCommon in the device tree.
 | build config              | BoardConfig/BoardConfigCommon |
 | ------------------------- | ----------------------------- |
 | DEFCONFIG                 | TARGET_KERNEL_CONFIG          |
@@ -72,23 +70,23 @@ Fork本仓库到你的储存库然后点击`Action`，在左侧可看见`Build K
 | MKBOOTIMG_EXTRA_ARGS      | BOARD_MKBOOTIMG_ARGS          |
 | KERNEL_BINARY             | BOARD_KERNEL_IMAGE_NAME       |
 
-下面是一些build config里面的选项的用途
-| build config          | 作用                               |
+Here's what some of the options in the build config do
+| build config          | do                                 |
 | --------------------- | -----------------------------------|
-| VENDOR_RAMDISK_BINARY | ramdisk 路径                        |
-| ARCH                  | 架构 arm/arm64/x86_64               |
-| BUILD_BOOT_IMG        | 为 1 时创建 boot.img                 |
-| SKIP_VENDOR_BOOT      | 为 1 时跳过创建 vendor_boot          |
-| FILES                 | 需要输出的文件                       |
-| CLANG_VERSION         | 我自定义的选项，用于定义 clang 版本     |
+| VENDOR_RAMDISK_BINARY | ramdisk path                       |
+| ARCH                  | Architecture arm/arm64/x86_64      |
+| BUILD_BOOT_IMG        | Create boot image for 1            |
+| SKIP_VENDOR_BOOT      | Skip create vendor_boot for 1      |
+| FILES                 | Need out files                     |
+| CLANG_VERSION         | Define clang version               |
 
-剩下的就是杂七杂八的编译器需要，更多请参见[build/build.sh](https://android.googlesource.com/kernel/build/+/refs/heads/master-kernel-build-2022/build.sh)的注释
-#### Boot image to get ramdisk
-故名思义，提供一个可以正常开机的boot镜像，需要直链，最好是同一套内核源码以及与你当前系统同一套设备树从aosp构建出来的。ramdisk里面包含分区表以及init，没有的话可能会重启到fastboot。
+More to visits [build/build.sh](https://android.googlesource.com/kernel/build/+/refs/heads/master-kernel-build-2022/build.sh)
+### Boot image to get ramdisk
+Provide a boot image that will boot successfully, with the same kernel source code and the same device tree as your current system built from aosp, the ramdisk contains the partition table and init, without which it may reboot to fastboot.
 
-例如: https://raw.githubusercontent.com/xiaoleGun/KernelSU_action/main/boot/boot-wayne-from-Miku-UI-latest.img
+e.g. https://raw.githubusercontent.com/xiaoleGun/KernelSU_action/main/boot/boot-wayne-from-Miku-UI-latest.img
 
-## 感谢
+## Credits
 - [AnyKernel3](https://github.com/osm0sis/AnyKernel3)
 - [AOSP](https://android.googlesource.com)
 - [KernelSU](https://github.com/tiann/KernelSU)
