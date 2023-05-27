@@ -8,15 +8,15 @@ on:
       KERNEL_SOURCE:
         description: 'Kernel Source'
         required: true
-        default: 'https://github.com/srikanth-oxygen/kernel_xiaomi_sm8250_penguin'
+        default: 'https://github.com/donvito007/kernel_xiaomi_sm8250-Tested'
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: 'main'
+        default: 'android12-caf'
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'vendor/kona-perf_defconfig'
+        default: 'thyme_stock-defconfig'
       KERNEL_FILE:
         description: 'Your kernel out image name'
         required: true
