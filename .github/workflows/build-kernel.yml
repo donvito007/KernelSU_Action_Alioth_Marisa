@@ -8,15 +8,15 @@ on:
       KERNEL_SOURCE:
         description: 'Kernel Source'
         required: true
-        default: 'https://github.com/donvito007/kernel_xiaomi_sm8250-Tested'
+        default: 'https://github.com/donvito007/EternityKernel-alioth'
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: 'android12-caf'
+        default: 'aosp'
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'thyme_defconfig'
+        default: 'alioth_defconfig'
       KERNEL_FILE:
         description: 'Your kernel out image name'
         required: true
