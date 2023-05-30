@@ -8,19 +8,19 @@ on:
       KERNEL_SOURCE:
         description: 'Kernel Source'
         required: true
-        default: 'https://github.com/Three-taile-dragon/crdroid_kernel_oneplus_sdm845'
+        default: 'https://github.com/donvito007/Xiaomi_sm8250_kernel'
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: '13.0-m00-ksu'
+        default: 'kucing-13'
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'arch/arm64/configs/enchilada_defconfig'
+        default: 'alioth_defconfig'
       KERNEL_FILE:
         description: 'Your kernel out image name'
         required: true
-        default: 'Image.gz-dtb'
+        default: 'Image'
       CLANG_VERSION:
         description: 'Clang version'
         required: true
