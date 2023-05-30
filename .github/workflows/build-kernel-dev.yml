@@ -101,8 +101,8 @@ jobs:
    #     make -j$(nproc --all) O=out ARCH=arm64 CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=$GITHUB_WORKSPACE/kernel_workspace/gcc-aosp/bin/aarch64-linux-android- CC=clang ${{ env.BUILD_EXTRA_COMMAND }} ${{ env.KERNEL_DEFCONFIG }}
    #     make -j$(nproc --all) O=out ARCH=arm64 CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=$GITHUB_WORKSPACE/kernel_workspace/gcc-aosp/bin/aarch64-linux-android- CC=clang ${{ env.BUILD_EXTRA_COMMAND }}
     
-    - name: Android Kernel Action
-        uses: lemniskett/android-kernel-actions@v1.0.0
+     - name: Android Kernel Action
+          uses: lemniskett/android-kernel-actions@v1.0.0
 
     - name: Make Anykernel for your kernel
       run: |
