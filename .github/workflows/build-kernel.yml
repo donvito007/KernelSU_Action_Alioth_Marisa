@@ -8,15 +8,15 @@ on:
       KERNEL_SOURCE:
         description: 'Kernel Source'
         required: true
-        default: 'https://github.com/donvito007/android_kernel_xiaomi_thyme'
+        default: 'https://github.com/macka69/kernel_xiaomi_sm8250-1'
       KERNEL_SOURCE_BRANCH:
         description: 'Branch'
         required: true
-        default: 'main'
+        default: 'kernelsu'
       KERNEL_DEFCONFIG:
         description: 'Defconfig'
         required: true
-        default: 'thyme_defconfig'
+        default: 'alioth_defconfig'
       KERNEL_FILE:
         description: 'Your kernel out image name'
         required: true
