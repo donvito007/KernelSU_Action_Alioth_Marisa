@@ -72,9 +72,9 @@ jobs:
                 git clone ${{ env.CUSTOM_CLANG_SOURCE }} -b ${{ env.CUSTOM_CLANG_BRANCH }} clang-aosp --depth=1
             fi        
         else
-            wget -O clang.tar.gz ${{ env.CUSTOM_CLANG_SOURCE }}
+            wget -O clang.zip ${{ env.CUSTOM_CLANG_SOURCE }}
             mkdir clang-aosp
-            tar -C clang-aosp/ -zxvf clang.tar.gz
+            unzip clang.zip -d clang-aosp/
         fi
 
     - name: Download Gcc-aosp
@@ -103,7 +103,7 @@ jobs:
     - name: Download kernel source
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone ${{ env.KERNEL_SOURCE }} -b ${{ env.KERNEL_SOURCE_BRANCH }} android-kernel --depth=1
+        git clone --recursive ${{ env.KERNEL_SOURCE }} -b ${{ env.KERNEL_SOURCE_BRANCH }} android-kernel --depth=1
 
     - name: Download source boot image
       if: env.BUILD_BOOT_IMG == 'true'
@@ -172,14 +172,14 @@ jobs:
            echo "CHECK_FILE_IS_OK=true" >> $GITHUB_ENV
        else
            echo "Kernel output file is empty"
-           
+           exit 1
        fi
        if [ ${{ env.NEED_DTBO }} = true ]; then
            if [ -f android-kernel/out/arch/${{ env.ARCH }}/boot/dtbo.img ]; then
                echo "CHECK_DTBO_IS_OK=true" >> $GITHUB_ENV
            else
                echo "DTBO image is empty"
-           
+               exit 1
            fi
        fi
   
@@ -187,7 +187,7 @@ jobs:
       if: env.CHECK_FILE_IS_OK == 'true'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone https://github.com/donvito007/AnyKernel3
+        git clone --recursive --depth=1 https://github.com/donvito007/AnyKernel3 -b thyme
         sed -i 's/do.devicecheck=1/do.devicecheck=0/g' AnyKernel3/anykernel.sh
         sed -i 's!block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;!block=auto;!g' AnyKernel3/anykernel.sh
         sed -i 's/is_slot_device=0;/is_slot_device=auto;/g' AnyKernel3/anykernel.sh
